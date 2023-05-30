@@ -2,14 +2,14 @@ version: '3'
 
 services:
   server:
-    image: your-username/server
+    image: mtfs-server
     ports:
       - 8080:8080
     networks:
       - my-network  # Create a network for inter-container communication
 
   client:
-    image: your-username/client
+    image: mtfs-client
     depends_on:
       - server
     networks:

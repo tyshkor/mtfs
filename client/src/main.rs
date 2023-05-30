@@ -50,7 +50,7 @@ async fn main() -> Result<()> {
     let client = Client::new();
 
     match &cli.command {
-        Some(Commands::UploadBundle { batch_id, paths }) => {
+        Some(Commands::UploadBatch { batch_id, paths }) => {
             upload::upload_files(client.clone(), &mut state, addr, batch_id.clone(), paths).await?;
             Ok(())
         }
