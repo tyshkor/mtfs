@@ -24,7 +24,7 @@ struct Cli {
 #[tokio::main]
 async fn main() -> Result<()> {
     let subscriber = FmtSubscriber::builder()
-        .with_max_level(Level::TRACE)
+        .with_max_level(Level::INFO)
         .finish();
     tracing::subscriber::set_global_default(subscriber)?;
 
@@ -50,7 +50,7 @@ async fn main() -> Result<()> {
     let client = Client::new();
 
     match &cli.command {
-        Some(Commands::UploadBundle { batch_id, paths }) => {
+        Some(Commands::UploadBatch { batch_id, paths }) => {
             upload::upload_files(client.clone(), &mut state, addr, batch_id.clone(), paths).await?;
             Ok(())
         }

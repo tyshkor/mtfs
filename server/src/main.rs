@@ -34,7 +34,7 @@ pub struct State {
 #[tokio::main]
 async fn main() -> Result<()> {
     let subscriber = FmtSubscriber::builder()
-        .with_max_level(Level::TRACE)
+        .with_max_level(Level::INFO)
         .finish();
     tracing::subscriber::set_global_default(subscriber)?;
 

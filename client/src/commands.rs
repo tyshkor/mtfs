@@ -3,7 +3,7 @@ use std::path::PathBuf;
 
 #[derive(Subcommand)]
 pub(crate) enum Commands {
-    UploadBundle {
+    UploadBatch {
         #[arg(short, long)]
         batch_id: common::BatchId,
         #[arg(short, long)]
