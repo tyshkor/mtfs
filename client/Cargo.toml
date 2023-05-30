@@ -1,0 +1,22 @@
+[package]
+name = "client"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+reqwest = { version = "0.11.18", features = ["stream", "multipart", "json"] }
+clap = { version = "4.2.7", features = ["cargo", "derive", "env"] }
+clap_derive = { version = "=4.2.0" }
+tokio.workspace = true
+tokio-util.workspace = true
+ring.workspace = true
+serde.workspace = true
+serde_derive.workspace = true
+serde_json.workspace = true
+anyhow.workspace = true
+common = { path = "../common" }
+merkle_tree = { path = "../merkle_tree" }
+tracing.workspace = true
+tracing-subscriber.workspace = true
