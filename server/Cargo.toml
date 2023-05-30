@@ -1,0 +1,21 @@
+[package]
+name = "server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+async-trait = "0.1.59"
+axum = { version = "0.6.18", features = ["multipart"] }
+futures = "0.3.25"
+futures-util = "0.3.28"
+common = { path = "../common" }
+merkle_tree = { path = "../merkle_tree" }
+serde.workspace = true
+serde_derive.workspace = true
+serde_json.workspace = true
+tokio.workspace = true
+tokio-util.workspace = true
+ring.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
