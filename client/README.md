@@ -1,4 +1,4 @@
-# Client
+# MTFS Client
 
 A client that uploads potentially small files to a server and later downloads them, ensuring that they are correct and not corrupted in any way. This is achieved through the use of a Merkle tree.
 
