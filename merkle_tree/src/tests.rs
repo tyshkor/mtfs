@@ -2,9 +2,9 @@
 
 extern crate serde_json;
 
-use ring::digest::{Algorithm, SHA512};
 use crate::hashing::Hashing;
 use crate::merkletree::MerkleTree;
+use ring::digest::{Algorithm, SHA512};
 
 static DIGEST: &Algorithm = &SHA512;
 

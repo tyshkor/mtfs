@@ -14,9 +14,9 @@ use std::{
     sync::Arc,
 };
 use tokio::sync::Mutex;
-use upload::upload_handler;
 use tracing::{info, Level};
 use tracing_subscriber::FmtSubscriber;
+use upload::upload_handler;
 
 pub mod batch;
 pub mod client;

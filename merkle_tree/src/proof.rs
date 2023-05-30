@@ -1,8 +1,8 @@
-use std::cmp::Ordering;
-use ring::digest::Algorithm;
-use serde_derive::{Deserialize, Serialize};
 use crate::hashing::Hashing;
 use crate::tree::BinaryTree;
+use ring::digest::Algorithm;
+use serde_derive::{Deserialize, Serialize};
+use std::cmp::Ordering;
 
 /// A `Proof` stucture contains all data to prove that some value is a member
 /// of a `MerkleTree` with root hash `root_hash`, and hash function `algorithm`.
@@ -46,7 +46,9 @@ mod algorithm_serde {
 
 impl<T: PartialEq> PartialEq for Proof<T> {
     fn eq(&self, other: &Proof<T>) -> bool {
-        self.root_hash == other.root_hash && self.conjecture == other.conjecture && self.value == other.value
+        self.root_hash == other.root_hash
+            && self.conjecture == other.conjecture
+            && self.value == other.value
     }
 }
 
@@ -69,7 +71,12 @@ impl<T: Ord> Ord for Proof<T> {
 
 impl<T> Proof<T> {
     /// Constructs a new `Proof`
-    pub fn new(algorithm: &'static Algorithm, root_hash: Vec<u8>, conjecture: Conjecture, value: T) -> Self {
+    pub fn new(
+        algorithm: &'static Algorithm,
+        root_hash: Vec<u8>,
+        conjecture: Conjecture,
+        value: T,
+    ) -> Self {
         Proof {
             algorithm,
             root_hash,
@@ -125,11 +132,15 @@ impl Conjecture {
         }
     }
 
-    /// Tries to generate a proof that the i-th leaf is a member of the given tree. 
+    /// Tries to generate a proof that the i-th leaf is a member of the given tree.
     /// `count` must be equal to the number of leaves in the `tree`.
     /// Returns the new `Conjecture` and the i`-th value.
     /// `None` is returned in case `idx >= count`.
-    pub fn new_by_index<T>(tree: &BinaryTree<T>, i: usize, count: usize) -> Option<(Conjecture, &T)> {
+    pub fn new_by_index<T>(
+        tree: &BinaryTree<T>,
+        i: usize,
+        count: usize,
+    ) -> Option<(Conjecture, &T)> {
         if i >= count {
             return None;
         }
@@ -161,7 +172,8 @@ impl Conjecture {
                     sub_conjecture_val = Conjecture::new_by_index(left, i, left_count);
                     sibling_hash = Side::Right(right.hash().clone());
                 } else {
-                    sub_conjecture_val = Conjecture::new_by_index(right, i - left_count, count - left_count);
+                    sub_conjecture_val =
+                        Conjecture::new_by_index(right, i - left_count, count - left_count);
                     sibling_hash = Side::Left(left.hash().clone());
                 }
                 sub_conjecture_val.map(|(sub_conjecture, value)| {

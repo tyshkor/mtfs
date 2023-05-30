@@ -1,5 +1,5 @@
+use crate::hashing::{Hashable, Hashing};
 use ring::digest::{Algorithm, Digest};
-use crate::hashing::{Hashing, Hashable};
 
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum BinaryTree<T> {

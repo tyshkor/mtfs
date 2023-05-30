@@ -2,8 +2,8 @@ use crate::state::State;
 use anyhow::Result;
 use merkle_tree::proof::Proof;
 use reqwest::Client;
-use tracing::info;
 use std::{io::Cursor, net::SocketAddr, path::PathBuf};
+use tracing::info;
 
 pub(crate) async fn download_file(
     client: Client,

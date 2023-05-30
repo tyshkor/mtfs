@@ -11,11 +11,11 @@ use common::BatchId;
 use futures::TryStreamExt;
 use merkle_tree::merkletree::MerkleTree;
 use serde_derive::Deserialize;
-use tracing::info;
 use std::sync::Arc;
 use std::{io, path::PathBuf};
 use tokio::io::AsyncReadExt;
 use tokio_util::io::StreamReader;
+use tracing::info;
 
 #[derive(Deserialize)]
 pub struct UploadParams {

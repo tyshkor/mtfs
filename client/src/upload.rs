@@ -5,10 +5,10 @@ use reqwest::{
     multipart::{self, Part},
     Body, Client,
 };
-use tracing::info;
 use std::{net::SocketAddr, path::PathBuf};
 use tokio::io::AsyncReadExt;
 use tokio_util::codec::{BytesCodec, FramedRead};
+use tracing::info;
 
 pub(crate) async fn upload_files(
     client: Client,
@@ -45,7 +45,7 @@ pub(crate) async fn upload_files(
                 .to_str()
                 .ok_or(anyhow::Error::msg("not a valid str"))?
                 .to_string();
-            
+
             Ok::<(Part, Vec<u8>, String), anyhow::Error>((some_file, bytes, part_name))
         })
         .collect();
@@ -71,7 +71,12 @@ pub(crate) async fn upload_files(
 
     // Send the request
     let _ = client
-        .post(format!("http://{}{}?batch_id={}", addr, common::UPLOAD_ROUTE, batch_id))
+        .post(format!(
+            "http://{}{}?batch_id={}",
+            addr,
+            common::UPLOAD_ROUTE,
+            batch_id
+        ))
         .multipart(form)
         .send()
         .await?;

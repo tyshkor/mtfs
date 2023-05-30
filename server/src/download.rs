@@ -9,10 +9,10 @@ use axum::{
 };
 use common::BatchId;
 use serde_derive::Deserialize;
-use tracing::info;
 use std::{pin::Pin, sync::Arc};
 use tokio::io::{AsyncRead, AsyncReadExt};
 use tokio_util::io::ReaderStream;
+use tracing::info;
 
 #[derive(Deserialize)]
 pub struct DownloadParams {
@@ -60,16 +60,16 @@ pub async fn download_handler(
         Ok((proof, stream)) => {
             info!("Download was successful");
             Response::builder()
-            .header(common::PROOF_HEADER, proof)
-            .body(boxed(StreamBody::new(ReaderStream::new(stream))))
-            .unwrap()
-        },
+                .header(common::PROOF_HEADER, proof)
+                .body(boxed(StreamBody::new(ReaderStream::new(stream))))
+                .unwrap()
+        }
         Err(err) => {
             info!("Download failed, because: {}", err);
             Response::builder()
-            .status(StatusCode::INTERNAL_SERVER_ERROR)
-            .body(boxed(err.to_string()))
-            .unwrap()
-        },
+                .status(StatusCode::INTERNAL_SERVER_ERROR)
+                .body(boxed(err.to_string()))
+                .unwrap()
+        }
     }
 }

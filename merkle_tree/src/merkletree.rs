@@ -1,8 +1,8 @@
-use std::cmp::Ordering;
-use ring::digest::Algorithm;
-use crate::hashing::{Hashing, Hashable};
-use crate::tree::BinaryTree;
+use crate::hashing::{Hashable, Hashing};
 use crate::proof::{Conjecture, Proof};
+use crate::tree::BinaryTree;
+use ring::digest::Algorithm;
+use std::cmp::Ordering;
 
 /// A Merkle tree is a binary tree, with values of type `T` at the leafs,
 /// and where every internal node holds the hash of the concatenation of the hashes of its children nodes.
