@@ -15,14 +15,15 @@ pub(crate) async fn upload_files(
     state: &mut State,
     addr: SocketAddr,
     batch_id: common::BatchId,
-    file_name_vec: &Vec<PathBuf>,
+    file_name_vec: &[PathBuf],
 ) -> Result<()> {
     let part_vec: Vec<_> = file_name_vec
-        .into_iter()
+        .iter()
         .map(move |file_name| async {
             let mut file = tokio::fs::File::open(file_name.clone()).await?;
 
             let mut bytes = Vec::new();
+            #[allow(clippy::let_underscore_future)]
             let _ = file.read_to_end(&mut bytes);
             let stream = FramedRead::new(file, BytesCodec::new());
             let file_body = Body::wrap_stream(stream);

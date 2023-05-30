@@ -28,7 +28,7 @@ pub(crate) async fn download_file(
         .get(common::PROOF_HEADER)
         .ok_or(anyhow::Error::msg("proof header was not provided"))?;
 
-    let proof: Proof<Vec<u8>> = serde_json::from_str(&header.to_str()?)?;
+    let proof: Proof<Vec<u8>> = serde_json::from_str(header.to_str()?)?;
 
     let root_hash = state
         .batch_root_map

@@ -57,6 +57,7 @@ pub async fn upload(
         paths.push(real_path);
 
         let mut bytes = Vec::new();
+        #[allow(clippy::let_underscore_future)]
         let _ = file.read_to_end(&mut bytes);
         bytes_vec.push(bytes);
     }

@@ -35,6 +35,7 @@ pub async fn download(
     let mut file = tokio::fs::File::open(real_path.clone()).await?;
 
     let mut bytes = Vec::new();
+    #[allow(clippy::let_underscore_future)]
     let _ = file.read_to_end(&mut bytes);
 
     let proof = batch
