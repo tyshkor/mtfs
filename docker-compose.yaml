@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  server:
+    image: your-username/server
+    ports:
+      - 8080:8080
+    networks:
+      - my-network  # Create a network for inter-container communication
+
+  client:
+    image: your-username/client
+    depends_on:
+      - server
+    networks:
+      - my-network  # Attach the client container to the same network
+
+networks:
+  my-network:  # Define the network for inter-container communication
